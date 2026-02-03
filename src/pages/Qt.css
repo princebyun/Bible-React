@@ -1,0 +1,143 @@
+/* 원본 qt.css */
+body:has(.qt-page-container), html:has(.qt-page-container) {
+  height: 100%;
+}
+.qt-page-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  height: calc(100vh - 80px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+#capture-area {
+  flex-grow: 1;
+  height: 100%;
+  overflow: hidden;
+}
+
+.qt-content-area {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.qt-header {
+  text-align: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.8rem;
+  flex-shrink: 0;
+}
+.qt-date {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-bottom: 0.2rem;
+}
+.qt-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0.3rem 0;
+  color: #343a40;
+  word-break: keep-all;
+}
+.qt-passage {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #495057;
+  margin-bottom: 0;
+}
+.qt-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+.qt-body::-webkit-scrollbar { width: 6px; }
+.qt-body::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+.qt-body .verse {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+.qt-body .verse strong {
+  font-weight: bold;
+  margin-right: 0.3rem;
+  color: #007bff;
+}
+
+.qt-note-area {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.note-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #343a40;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.8rem;
+  flex-shrink: 0;
+}
+
+.note-textarea {
+  flex-grow: 1;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: none;
+  background-color: #fdfdfd;
+}
+
+.note-textarea:focus {
+  outline: none;
+  border-color: #87CEEB;
+  box-shadow: 0 0 0 0.2rem rgba(135, 206, 235, 0.25);
+  background-color: #fff;
+}
+
+.btn-area {
+  margin-top: 1rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .qt-page-container {
+    height: auto;
+    padding: 1rem;
+    display: block;
+  }
+  #capture-area {
+    height: auto;
+    display: block;
+  }
+  .qt-content-area, .qt-note-area {
+    height: auto;
+    margin-bottom: 1rem;
+  }
+  .qt-body {
+    max-height: 300px;
+  }
+  .note-textarea {
+    min-height: 300px;
+  }
+}
