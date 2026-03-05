@@ -1,7 +1,205 @@
-/* 원본 qt.css */
-body:has(.qt-page-container), html:has(.qt-page-container) {
+/* ===== 라이트 모드 (기본값) ===== */
+:root {
+  --qt-bg: #f0f8ff;
+  --qt-card-bg: #fff;
+  --qt-card-shadow: rgba(0, 0, 0, 0.05);
+  --qt-text: #343a40;
+  --qt-text-sub: #6c757d;
+  --qt-text-passage: #495057;
+  --qt-border: #eee;
+  --qt-verse-accent: #007bff;
+  --qt-textarea-bg: #fdfdfd;
+  --qt-textarea-border: #ced4da;
+  --qt-textarea-focus-bg: #fff;
+  --qt-scrollbar: #ccc;
+  --qt-capture-bg: #f0f8ff;
+  --qt-header-bg: #87CEEB;
+  --qt-header-text: #ffffff;
+  --qt-header-link-bg: rgba(255, 255, 255, 0.25);
+  --qt-header-link-border: rgba(255, 255, 255, 0.6);
+  --qt-header-shadow: rgba(0, 0, 0, 0.1);
+  --qt-header-hover-bg: #ffffff;
+  --qt-header-hover-text: #007bff;
+  --qt-dropdown-bg: #fff;
+  --qt-dropdown-text: #343a40;
+  --qt-dropdown-hover-bg: #f0f8ff;
+  --qt-toggle-bg: #e2e8f0;
+  --qt-toggle-active-bg: #4f6d7a;
+  --qt-toggle-knob: #fff;
+  --qt-toggle-label: #64748b;
+  --qt-toggle-label-active: #007bff;
+}
+
+/* ===== 다크 모드 ===== */
+[data-theme="dark"] {
+  --qt-bg: #1a1a2e;
+  --qt-card-bg: #16213e;
+  --qt-card-shadow: rgba(0, 0, 0, 0.3);
+  --qt-text: #e2e8f0;
+  --qt-text-sub: #94a3b8;
+  --qt-text-passage: #cbd5e1;
+  --qt-border: #334155;
+  --qt-verse-accent: #60a5fa;
+  --qt-textarea-bg: #1e293b;
+  --qt-textarea-border: #475569;
+  --qt-textarea-focus-bg: #1e293b;
+  --qt-scrollbar: #475569;
+  --qt-capture-bg: #1a1a2e;
+  --qt-header-bg: #0f3460;
+  --qt-header-text: #e2e8f0;
+  --qt-header-link-bg: rgba(255, 255, 255, 0.1);
+  --qt-header-link-border: rgba(255, 255, 255, 0.2);
+  --qt-header-shadow: rgba(0, 0, 0, 0.4);
+  --qt-header-hover-bg: rgba(255, 255, 255, 0.15);
+  --qt-header-hover-text: #93c5fd;
+  --qt-dropdown-bg: #1e293b;
+  --qt-dropdown-text: #e2e8f0;
+  --qt-dropdown-hover-bg: #334155;
+  --qt-toggle-bg: #334155;
+  --qt-toggle-active-bg: #fbbf24;
+  --qt-toggle-knob: #1e293b;
+  --qt-toggle-label: #94a3b8;
+  --qt-toggle-label-active: #fbbf24;
+}
+
+/* 테마 전환 부드러운 효과 */
+body.qt-page {
+  background-color: var(--qt-bg);
+  color: var(--qt-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.qt-page, html:has(body.qt-page) {
   height: 100%;
 }
+
+/* ===== 다크/라이트 토글 스위치 ===== */
+.theme-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--qt-card-bg);
+  border-radius: 2rem;
+  box-shadow: 0 2px 8px var(--qt-card-shadow);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.theme-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--qt-toggle-label);
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.theme-label.active {
+  color: var(--qt-toggle-label-active);
+}
+
+.toggle-switch {
+  position: relative;
+  width: 60px;
+  height: 32px;
+  background-color: var(--qt-toggle-bg);
+  border-radius: 16px;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 26px;
+  height: 26px;
+  background-color: var(--qt-toggle-knob);
+  border-radius: 50%;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-knob::after {
+  content: "☀";
+  font-size: 0.85rem;
+}
+
+.toggle-switch input:checked ~ .toggle-knob {
+  transform: translateX(28px);
+}
+
+.toggle-switch input:checked ~ .toggle-knob::after {
+  content: "☾";
+}
+
+[data-theme="dark"] .toggle-switch {
+  background-color: var(--qt-toggle-active-bg);
+}
+
+/* ===== 헤더 다크모드 ===== */
+body.qt-page .site-header {
+  background-color: var(--qt-header-bg);
+  box-shadow: 0 2px 4px var(--qt-header-shadow);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.qt-page .site-header .navbar-brand {
+  color: var(--qt-header-text);
+  transition: color 0.3s ease;
+}
+
+body.qt-page .site-header .nav-link {
+  color: var(--qt-header-text);
+  background-color: var(--qt-header-link-bg);
+  border-color: var(--qt-header-link-border);
+  transition: all 0.3s ease;
+}
+
+body.qt-page .site-header .nav-link:hover {
+  background-color: var(--qt-header-hover-bg);
+  color: var(--qt-header-hover-text);
+  border-color: var(--qt-header-hover-bg);
+}
+
+body.qt-page .site-header .navbar-toggler {
+  border-color: var(--qt-header-link-border);
+}
+
+body.qt-page .dropdown-menu {
+  background-color: var(--qt-dropdown-bg);
+  border-color: var(--qt-border);
+  transition: background-color 0.3s ease;
+}
+
+body.qt-page .dropdown-item {
+  color: var(--qt-dropdown-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.qt-page .dropdown-item:hover {
+  background-color: var(--qt-dropdown-hover-bg);
+  color: var(--qt-dropdown-text);
+}
+
+/* ===== 전체 컨테이너 ===== */
 .qt-page-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -18,50 +216,57 @@ body:has(.qt-page-container), html:has(.qt-page-container) {
   overflow: hidden;
 }
 
+/* 왼쪽: 큐티 본문 영역 */
 .qt-content-area {
-  background-color: #fff;
+  background-color: var(--qt-card-bg);
   padding: 1.5rem;
   border-radius: 0.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px var(--qt-card-shadow);
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .qt-header {
   text-align: center;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--qt-border);
   padding-bottom: 0.8rem;
   flex-shrink: 0;
 }
+
 .qt-date {
   font-size: 0.9rem;
-  color: #6c757d;
+  color: var(--qt-text-sub);
   margin-bottom: 0.2rem;
 }
+
 .qt-title {
   font-size: 1.4rem;
   font-weight: bold;
   margin: 0.3rem 0;
-  color: #343a40;
+  color: var(--qt-text);
   word-break: keep-all;
 }
+
 .qt-passage {
   font-size: 0.95rem;
   font-weight: 500;
-  color: #495057;
+  color: var(--qt-text-passage);
   margin-bottom: 0;
 }
+
 .qt-body {
   flex-grow: 1;
   overflow-y: auto;
   padding-right: 0.5rem;
 }
+
 .qt-body::-webkit-scrollbar { width: 6px; }
 .qt-body::-webkit-scrollbar-thumb {
-  background-color: #ccc;
+  background-color: var(--qt-scrollbar);
   border-radius: 3px;
 }
 
@@ -69,29 +274,33 @@ body:has(.qt-page-container), html:has(.qt-page-container) {
   margin-bottom: 0.5rem;
   line-height: 1.5;
   font-size: 0.95rem;
+  color: var(--qt-text);
 }
+
 .qt-body .verse strong {
   font-weight: bold;
   margin-right: 0.3rem;
-  color: #007bff;
+  color: var(--qt-verse-accent);
 }
 
+/* 오른쪽: 묵상 노트 영역 */
 .qt-note-area {
-  background-color: #fff;
+  background-color: var(--qt-card-bg);
   padding: 1.5rem;
   border-radius: 0.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px var(--qt-card-shadow);
   height: 100%;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .note-title {
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  color: #343a40;
-  border-bottom: 1px solid #eee;
+  color: var(--qt-text);
+  border-bottom: 1px solid var(--qt-border);
   padding-bottom: 0.8rem;
   flex-shrink: 0;
 }
@@ -100,27 +309,51 @@ body:has(.qt-page-container), html:has(.qt-page-container) {
   flex-grow: 1;
   width: 100%;
   padding: 1rem;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--qt-textarea-border);
   border-radius: 0.5rem;
   font-size: 1rem;
   line-height: 1.5;
   resize: none;
-  background-color: #fdfdfd;
+  background-color: var(--qt-textarea-bg);
+  color: var(--qt-text);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .note-textarea:focus {
   outline: none;
   border-color: #87CEEB;
   box-shadow: 0 0 0 0.2rem rgba(135, 206, 235, 0.25);
-  background-color: #fff;
+  background-color: var(--qt-textarea-focus-bg);
 }
 
+.note-textarea::placeholder {
+  color: var(--qt-text-sub);
+}
+
+/* 버튼 영역 */
 .btn-area {
   margin-top: 1rem;
   flex-shrink: 0;
 }
 
+.btn-kakao {
+  background-color: #FEE500;
+  color: #000000;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-kakao:hover {
+  background-color: #FDD835;
+  color: #000000;
+}
+
+/* 모바일 대응 (767px 이하) */
 @media (max-width: 767px) {
+  body.qt-page, html:has(body.qt-page) {
+    height: auto;
+    overflow: auto;
+  }
   .qt-page-container {
     height: auto;
     padding: 1rem;
