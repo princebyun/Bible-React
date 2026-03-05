@@ -199,6 +199,12 @@ body.qt-page .dropdown-item:hover {
   color: var(--qt-dropdown-text);
 }
 
+/* ===== 레이아웃 배경 다크모드 ===== */
+body.qt-page .layout-main {
+  background-color: var(--qt-bg);
+  transition: background-color 0.3s ease;
+}
+
 /* ===== 전체 컨테이너 ===== */
 .qt-page-container {
   max-width: 1400px;
