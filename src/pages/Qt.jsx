@@ -99,8 +99,6 @@ export function Qt() {
             const shareUrl = window.location.origin + serverData.url
             const kakaoImageUrl = kakaoData.infos.original.url
 
-            console.log('최종 공유 URL:', shareUrl)
-
             window.Kakao.Share.sendDefault({
                 objectType: 'feed',
                 content: {
